@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/lp_pool_backend"
+]
+resolver = "2"
