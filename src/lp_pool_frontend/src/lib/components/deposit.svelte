@@ -36,7 +36,7 @@
         <input id="amount" alt="Name" type="number" step="any" />
         <button type="submit">Click Me!</button>
     </form>
-    <p>Recived: {depositResult}</p>
+    <p>Received: {depositResult}</p>
 </div>
 
 <style>

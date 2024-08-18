@@ -50,8 +50,8 @@
         <input id="amount" alt="Name" type="number" step="any" />
         <button type="submit">Click Me!</button>
     </form>
-    <p>Recived token: {tokenResult}</p>
-    <p>Recived staken token: {stakenTokenResult}</p>
+    <p>Received token: {tokenResult}</p>
+    <p>Received staken token: {stakenTokenResult}</p>
 </div>
 
 <style>

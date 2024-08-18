@@ -4,6 +4,14 @@
   import Deposit from "$lib/components/deposit.svelte";
   import Swap from "$lib/components/swap.svelte";
   import Withdraw from "$lib/components/withdraw.svelte";
+  import AboutEn from "$lib/components/aboutEn.svelte";
+  import AboutPl from "$lib/components/aboutPl.svelte";
+
+  let language = "en";
+
+  function switchLanguage(lang) {
+    language = lang;
+  }
 </script>
 
 <div>
@@ -19,7 +27,19 @@
       <Withdraw />
     </div>
   </div>
+  <div>
+    <div>
+      <button on:click={() => switchLanguage('en')}>English</button>
+      <button on:click={() => switchLanguage('pl')}>Polski</button>
+    </div>
+    {#if language === "en"}
+      <AboutEn />
+    {:else if language === "pl"}
+      <AboutPl />
+    {/if}
+  </div>
 </div>
+
 
 <style>
   .container {
@@ -50,5 +70,11 @@
     border-radius: 10px;
     justify-content: center;
     align-items: center;
+  }
+
+  .about-section {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
   }
 </style>

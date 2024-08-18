@@ -1,5 +1,3 @@
-use candid::Principal;
-
 use std::cell::RefCell;
 
 mod lp;

@@ -61,7 +61,12 @@
         <p>Staken token amount: {tokenStAmount}</p>
         <p>Liquidity pool token amount: {tokenLpAmount}</p>
         <p>Target: {target}</p>
+        <p>
+            Please refresh the page to ensure that all data is up-to-date. Data is fetched on the client-side using 
+            <code>onMount()</code> in Svelte to avoid constant backend requests, which incur fees.
+          </p>
     </div>
+    
 </div>
 
 <style>
@@ -69,7 +74,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 90vh;
     }
     .container {
         display: flex;
@@ -79,6 +84,7 @@
     }
 
     .container p {
+        margin: 10px;
         padding: 10px;
         border: 1px solid black;
         border-radius: 5px;
