@@ -1,26 +1,54 @@
 <script>
   import "../index.scss";
-  import { backend } from "$lib/canisters";
-
-  let greeting = "";
-
-  function onSubmit(event) {
-    const name = event.target.name.value;
-    backend.greet(name).then((response) => {
-      greeting = response;
-    });
-    return false;
-  }
+  import Assets from "$lib/components/assets.svelte";
+  import Deposit from "$lib/components/deposit.svelte";
+  import Swap from "$lib/components/swap.svelte";
+  import Withdraw from "$lib/components/withdraw.svelte";
 </script>
 
-<main>
-  <img src="/logo2.svg" alt="DFINITY logo" />
-  <br />
-  <br />
-  <form action="#" on:submit|preventDefault={onSubmit}>
-    <label for="name">Enter your name: &nbsp;</label>
-    <input id="name" alt="Name" type="text" />
-    <button type="submit">Click Me!</button>
-  </form>
-  <section id="greeting">{greeting}</section>
-</main>
+<div>
+  <h1>Liquidity Pool Simulator</h1>
+  <div class="container">
+    <div class="left">
+      <Assets />
+    </div>
+
+    <div class="right wrapper">
+      <Deposit />
+      <Swap />
+      <Withdraw />
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left {
+    margin: 2vw;
+    border: 5px solid rebeccapurple;
+    border-radius: 15px;
+    /* background-color: rgb(10, 94, 122); */
+  }
+
+  .right {
+    margin: 2vw;
+    border: 5px solid red;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

@@ -1,3 +1,22 @@
+type Errors = variant {
+  InvalidPrice;
+  ToBigSwap : nat64;
+  InvalidLpTokenToRemove;
+  InvalidSwapAmount;
+  InvalidFee;
+  InvalidDeposit;
+  InvalidLiquidityTarget;
+};
+type Result = variant { Ok : nat64; Err : Errors };
+type Result_1 = variant { Ok : record { nat64; nat64 }; Err : Errors };
 service : {
-    "greet": (text) -> (text) query;
+  add_liquidity_to_pool : (nat64) -> (Result);
+  greet : (text) -> (text) query;
+  lp_lp_token_amount : () -> (nat64) query;
+  lp_price : () -> (nat64) query;
+  lp_st_token_amount : () -> (nat64) query;
+  lp_target_amount : () -> (nat64) query;
+  lp_token_amount : () -> (nat64) query;
+  remove_liquidity_from_pool : (nat64) -> (Result_1);
+  swap_st_pool : (nat64) -> (Result);
 }

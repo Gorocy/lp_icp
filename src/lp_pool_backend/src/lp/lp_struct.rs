@@ -1,18 +1,8 @@
-use crate::calc::{divide, multiply};
-use crate::errors::Errors;
+use crate::lp::calc::{divide, multiply};
+use crate::lp::errors::Errors;
+use crate::lp::var_type::{LpTokenAmount, Percentage, Price, StakedTokenAmount, TokenAmount};
 
-mod calc;
-mod errors;
-
-#[derive(Debug)]
-struct TokenAmount(u64);
-#[derive(Debug)]
-struct StakedTokenAmount(u64);
-struct LpTokenAmount(u64);
-struct Price(u64);
-struct Percentage(u64);
-
-struct LpPool {
+pub struct LpPool {
     price: Price,
     token_amount_reserve: TokenAmount,
     st_token_amount: StakedTokenAmount,
@@ -60,7 +50,7 @@ impl LpPool {
             return Err(Errors::InvalidDeposit);
         }
 
-        if self.lp_token_amount.0 == 0 {
+        if self.lp_token_amount.0 == self.token_amount_reserve.0 && self.st_token_amount.0 == 0  {
             self.token_amount_reserve.0 += token_amount.0;
             self.lp_token_amount.0 += token_amount.0;
             return Ok(LpTokenAmount(token_amount.0));
@@ -88,6 +78,8 @@ impl LpPool {
         }
 
         let part_of_lp = divide(lp_token_amount.0, self.lp_token_amount.0);
+
+        self.lp_token_amount.0 -= lp_token_amount.0;
 
         let token_to_receive = multiply(part_of_lp, self.token_amount_reserve.0);
         self.token_amount_reserve.0 -= token_to_receive;
@@ -139,4 +131,26 @@ impl LpPool {
         self.st_token_amount.0 += staked_token_amount.0;
         Ok(TokenAmount(token_to_receive))
     }
+
+
+    pub fn get_price(&self) -> Price {
+        self.price
+    }
+
+    pub fn get_token_amount(&self) -> TokenAmount {
+        self.token_amount_reserve
+    }
+
+    pub fn get_st_token_amount(&self) -> StakedTokenAmount {
+        self.st_token_amount
+    }
+
+    pub fn get_lp_token_amount(&self) -> LpTokenAmount {
+        self.lp_token_amount
+    }
+
+    pub fn get_target(&self) -> TokenAmount {
+        self.liquidity_target
+    }
+
 }

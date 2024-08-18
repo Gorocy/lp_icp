@@ -8,6 +8,10 @@ pub fn multiply(a: u64, b: u64) -> u64 {
 }
 
 pub fn divide(a: u64, b: u64) -> u64 {
+    if b == 0 {
+        panic!("Division by zero");
+    }
+    
     let a_scale = a * PRECISION;
     let result = a_scale / b;
     result
