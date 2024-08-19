@@ -15,7 +15,9 @@
                 if (response.Ok !== undefined) {
                     swapResult = parseInt(response.Ok) / precision;
                 } else if (response.Err !== undefined) {
-                    swapResult = "Error: " + JSON.stringify(response.Err);
+                    const error = JSON.stringify(response.Err);
+
+                    swapResult = "Error: " + error;
                 } else {
                     swapResult = "Unexpected response structure";
                 }
